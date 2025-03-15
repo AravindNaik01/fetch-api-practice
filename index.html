@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 100%;
+        border: 1px solid;
+        border-collapse: collapse;
+      }
+      td,
+      th {
+        border: 1px solid;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>title</th>
+          <th>description</th>
+          <th>category</th>
+          <th>price</th>
+          <th>rating</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody id="table-data">
+        <!-- <tr>
+                <td>asd</td>
+            </tr>
+             -->
+      </tbody>
+    </table>
+  </body>
+  <script>
+    fetch("https://dummyjson.com/products")
+      .then((response) => response.json())
+      .then((res) => {
+        const data = res.products;
+        let rows = "";
+        data.forEach((prdct) => {
+          //prdct its a
+          rows += `<tr>
+                <td>${prdct.id}</td>
+                    <td>${prdct.title}</td>
+                        <td>${prdct.description}</td>
+                            <td>${prdct.category}</td>
+                                <td>${prdct.price}</td>
+                                    <td>${prdct.rating}</td>
+                                   
+                                   <td><img src="${prdct.images}"  alt="img"  title="${prdct.images}"  style="height:40px; width:40px"> </td> 
+                <tr>`;
+        });
+        console.log(rows);
+        document.getElementById("table-data").innerHTML = rows;
+      });
+  </script>
+</html>
